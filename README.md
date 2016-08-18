@@ -1,3 +1,6 @@
+**Result:**
+
+[TOC]
 #####导航栏背景透明 
 ```
 [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -218,5 +221,30 @@ try-catch的RAC方法
 - (RACSignal *)or;
 ```
     
-
+#####网络监听
+```
+AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                NSLog(@"未识别的网络");
+                break;
+                
+            case AFNetworkReachabilityStatusNotReachable:
+                [GotyeUIUtil showError:@"当前网络不可用"];
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                NSLog(@"2G,3G,4G...的网络");
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                NSLog(@"wifi的网络");
+                break;
+            default:
+                break;
+        }
+    }];
+[manager startMonitoring];
+```
 
