@@ -247,4 +247,24 @@ AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedMana
     }];
 [manager startMonitoring];
 ```
+####宏定义
+```
+
+// 是否高清屏  
+#define isRetina ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)  
+// 是否模拟器  
+#define isSimulator (NSNotFound != [[[UIDevice currentDevice] model] rangeOfString:@"Simulator"].location)  
+// 是否iPad  
+#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)  
+// 是否iPad  
+#define someThing (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)? ipad: iphone 
+
+#if TARGET_IPHONE_SIMULATOR
+	#define HRTestLoginUser  @"coffee"
+#elif TARGET_OS_IPHONE
+	#define HRTestLoginUser  @"goofy"
+#endif
+
+```
+
 
